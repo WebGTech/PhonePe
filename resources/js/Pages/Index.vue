@@ -30,8 +30,6 @@
 
                     this.$inertia.post('login', {
                         token: token
-                    }).then((res) => {
-                        alert(res)
                     })
 
                 }).catch((err) => {

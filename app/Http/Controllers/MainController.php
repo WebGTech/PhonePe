@@ -61,7 +61,7 @@ class MainController extends Controller
     {
         $_user = User::where('mobile', '=', $user -> phoneNumber)->first();
         Auth::login($_user);
-        redirect('/qr/dashboard');
+        return redirect('/qr/dashboard');
     }
 
     public function createUser($user)
