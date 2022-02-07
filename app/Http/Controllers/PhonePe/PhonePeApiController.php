@@ -53,8 +53,6 @@ class PhonePeApiController extends Controller
 
         curl_close($curl);
 
-        dd($response);
-
         return $response;
 
     }
