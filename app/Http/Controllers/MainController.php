@@ -45,7 +45,7 @@ class MainController extends Controller
 
     private function authenticateUser($user)
     {
-        
+
         $oldUser = DB::table('users')
             ->where('mobile', '=', $user->phoneNumber)
             ->first();
@@ -73,7 +73,6 @@ class MainController extends Controller
             'mobile' => $user -> phoneNumber,
             'lang' => 'en',
             'is_verified' => $user -> isEmailVerified,
-            'password' => Hash::make($user -> phoneNumber),
         ]);
 
         $this->loginUser($user);
