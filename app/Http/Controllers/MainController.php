@@ -45,9 +45,7 @@ class MainController extends Controller
 
     private function authenticateUser($user)
     {
-
-        dd(DB::table('users')->get());
-
+        
         $oldUser = DB::table('users')
             ->where('mobile', '=', $user->phoneNumber)
             ->first();
