@@ -26,11 +26,7 @@
                     const newRes = JSON.parse(JSON.stringify(res))
                     const {grantToken: token} = newRes
 
-                    alert(token)
-
-                    this.$inertia.post('login', {
-                        token: token
-                    })
+                    this.$inertia.post('login', {token: token})
 
                 }).catch((err) => {
                     alert(err);
