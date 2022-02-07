@@ -64,7 +64,7 @@ class MainController extends Controller
 
         Auth::login($_user);
 
-        return redirect()->to('qr/dashboard');
+        return redirect()->route('qr.dashboard');
     }
 
     public function createUser($user)

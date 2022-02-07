@@ -10,6 +10,6 @@ Route::get('/', [MainController::class, 'index']);
 Route::post('login', [MainController::class, 'login']);
 
 // SJT RJT
-Route::get('qr/dashboard', [DashboardController::class, 'index']);
+Route::get('qr/dashboard', [DashboardController::class, 'index'])->name('qr.dashboard');
 Route::get('qr/order', [OrderController::class, 'index']);
 Route::post('qr/order/create', [OrderController::class, 'create']);
