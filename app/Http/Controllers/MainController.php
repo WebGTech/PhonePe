@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class MainController extends Controller
@@ -60,8 +61,10 @@ class MainController extends Controller
     public function loginUser($user)
     {
         $_user = User::where('mobile', '=', $user -> phoneNumber)->first();
+
         Auth::login($_user);
-        return redirect('/qr/dashboard');
+
+        return Redirect::route('qr/dashboard');
     }
 
     public function createUser($user)
