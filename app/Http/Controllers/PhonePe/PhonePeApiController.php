@@ -13,7 +13,7 @@ class PhonePeApiController extends Controller
 
     public function __construct()
     {
-        $this->salt_key = env("PHONEPAY_SLAT_KEY");
+        $this->salt_key = env('PHONEPAY_SLAT_KEY');
         $this->salt_index = env("PHONEPAY_SLAT_INDEX");
         $this->x_client_id = env("PHONEPAY_CLIENT_ID");
     }
@@ -52,6 +52,9 @@ class PhonePeApiController extends Controller
         $response = curl_exec($curl);
 
         curl_close($curl);
+
+        dd($response);
+
         return $response;
 
     }
