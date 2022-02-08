@@ -1,15 +1,21 @@
 <?php
 
-use App\Http\Controllers\FareController;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\Qr\DashboardController;
-use App\Http\Controllers\Qr\OrderController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Ticket\DashboardController;
+use App\Http\Controllers\Ticket\OrderController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MainController::class, 'index']);
-Route::post('login', [MainController::class, 'login']);
+Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/auth', [IndexController::class, 'fetchAccessToken'])->name('auth');
 
-// SJT RJT
-Route::get('qr/dashboard', [DashboardController::class, 'index'])->name('qr.dashboard');
-Route::get('qr/order', [OrderController::class, 'index']);
-Route::post('qr/order/create', [OrderController::class, 'create']);
+// PRODUCTS
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+
+// SJT RJT TICKET
+Route::get('/ticket/dashboard', [DashboardController::class, 'index'])->name('ticket.dashboard');
+Route::get('/ticket/order', [OrderController::class, 'index'])->name('ticket.order');
+Route::post('/ticket/create', [OrderController::class, 'create'])->name('ticket.create');
+
+//PAYMENT
+Route::get('/pay/{oid}', [\App\Http\Controllers\PaymentController::class, 'index']);

@@ -34,9 +34,13 @@
             })
         },
         authenticate: function (token) {
-            this.$inertia.post('login', {token: token})
+            this.$inertia.post('auth', {token: token})
+            .then(() => {
+
+            })
         }
     }
+
 </script>
 
 <style scoped>

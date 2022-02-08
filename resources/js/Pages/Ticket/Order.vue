@@ -1,6 +1,8 @@
 <template>
 
-    <form @submit.prevent="ticket.post('/qr/order/create')">
+    <nav-bar />
+
+    <form @submit.prevent="ticket.post('/ticket/create')">
 
         <div class="card shadow-sm m-2 p-3">
 
@@ -55,13 +57,13 @@
                     <div class="col-4 text-end">
                         <div class="row">
                             <div class="col-4" v-on:click="ticket.quantity < 6 ? ticket.quantity++ : ticket.quantity">
-                                <i class="fas fa-plus-circle"></i>
+                                <i class="fas fa-plus-circle h3 mt-1"></i>
                             </div>
                             <div class="col-4">
-                                <p v-text="ticket.quantity" v-on:change="getFare"></p>
+                                <p v-text="ticket.quantity" class="h3" v-on:change="getFare"></p>
                             </div>
                             <div class="col-4" v-on:click="ticket.quantity > 1 ? ticket.quantity-- : ticket.quantity">
-                                <i class="fas fa-minus-circle"></i>
+                                <i class="fas fa-minus-circle h3 mt-1"></i>
                             </div>
                         </div>
                     </div>
@@ -74,9 +76,15 @@
                 <div class="small text-danger">{{ ticket.errors.fare }}</div>
             </div>
 
-            <div class="p-3">
+        </div>
 
-                <h6 class="text-center h6">Order Details</h6>
+        <div class="card shadow-sm m-2">
+
+            <div class="card-header text-center">
+                <i class="far fa-calendar-check mx-2"></i> Order Details
+            </div>
+
+            <div class="card-body">
 
                 <div class="my-2">
                     <div class="col text-center">
@@ -88,24 +96,26 @@
                     <div class="col-6 text-start">Ticket Type</div>
                     <div class="col-6 text-end">{{ ticket.pass_id === "11" ? "Single" : "Return" }}</div>
                 </div>
+
                 <div class="row">
                     <div class="col-6 text-start">Ticket Quantity</div>
                     <div class="text-end col-6">{{ ticket.quantity }}</div>
                 </div>
+
                 <hr/>
+
                 <div class="row">
                     <div class="col-6 text-start">Total Fare</div>
-                    <div class="text-end col-6">{{ ticket.quantity }} x ₹ {{ ticket.fare }} = ₹ {{ ticket.quantity *
-                        ticket.fare }}
+                    <div class="text-end col-6">{{ ticket.quantity }} x ₹ {{ ticket.fare }} = ₹ {{ ticket.quantity * ticket.fare }}
                     </div>
                 </div>
 
             </div>
 
-            <div class="m-2 p-2 fixed-bottom">
-                <button type="submit" class="btn btn-primary w-100" :disabled="ticket.processing">PROCEED</button>
-            </div>
+        </div>
 
+        <div class="m-2 p-2 fixed-bottom">
+            <button type="submit" class="btn btn-primary w-100" :disabled="ticket.processing">PROCEED</button>
         </div>
 
     </form>
@@ -113,9 +123,9 @@
 </template>
 
 <script>
-
     import {Link} from '@inertiajs/inertia-vue3'
     import { useForm } from '@inertiajs/inertia-vue3'
+    import NavBar from "../../Shared/NavBar";
 
     export default {
 
@@ -126,6 +136,7 @@
         name: "Order",
 
         components: {
+            NavBar,
             Link
         },
 

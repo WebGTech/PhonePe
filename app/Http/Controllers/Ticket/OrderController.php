@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Qr;
+namespace App\Http\Controllers\Ticket;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,13 +12,14 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Qr/Order', [
-            'stations' => DB::table('stations')->get()
+        return Inertia::render('Ticket/Order', [
+            'stations' => DB::table('stations')->get(['stn_id', 'stn_name'])
         ]);
     }
 
     public function create(Request $request)
     {
+        sleep(3);
         $request -> validate([
             'source_id' => ['required'],
             'destination_id' => ['required'],
@@ -27,8 +28,10 @@ class OrderController extends Controller
             'fare' => ['required']
         ]);
 
+        $saleOrderNumber = $this -> genSaleOrderNumber($request->input('pass_id'));
+
         DB::table('orders')->insert([
-            'sale_or_no' => $this -> genSaleOrderNumber($request->input('pass_id')),
+            'sale_or_no' => $saleOrderNumber,
             'txn_date' => now(),
             'user_id' => Auth::id(),
             'src_stn_id' => $request -> input('source_id'),
@@ -42,13 +45,13 @@ class OrderController extends Controller
             'sale_or_status' => 1,
         ]);
 
-        return redirect()->to('payment');
+        return redirect()->to('/pay/'.$saleOrderNumber);
 
     }
 
     private function genSaleOrderNumber($pass_id)
     {
-        return bin2hex("ATEK"."7977192875".$pass_id.time());
+        return bin2hex("ATEK".Auth::user()->mobile.$pass_id.time());
     }
 
 }

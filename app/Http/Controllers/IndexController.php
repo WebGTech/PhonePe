@@ -4,21 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\PhonePe\PhonePeApiController;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class MainController extends Controller
+class IndexController extends Controller
 {
     public function index()
     {
         return Inertia::render('Index');
     }
 
-    public function login(Request $request)
+    public function fetchAccessToken(Request $request)
     {
         $api = new PhonePeApiController();
 
@@ -41,7 +39,6 @@ class MainController extends Controller
         } else {
             dd($accessTokenResponse);
         }
-
     }
 
     private function authenticateUser($user)
@@ -64,7 +61,7 @@ class MainController extends Controller
 
         Auth::login($_user);
 
-        return redirect()->route('qr.dashboard');
+        return redirect()->route('products');
     }
 
     public function createUser($user)

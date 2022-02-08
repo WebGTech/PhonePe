@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Qr;
+namespace App\Http\Controllers\Ticket;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Qr/Dashboard');
+        return Inertia::render('Ticket/Dashboard');
     }
-
 }

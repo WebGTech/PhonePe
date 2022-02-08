@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class FareController extends Controller
 {
-    public function fare(Request $request)
+    public function getFare(Request $request)
     {
-
         $request->validate([
             'source' => 'required',
             'destination' => 'required',

@@ -1,7 +1,8 @@
-<!--suppress ALL -->
 <template>
 
-    <div class="m-3 my-5">
+    <nav-bar />
+
+    <div class="m-3">
         <div class="row">
             <small>Feb 6, 2022</small>
         </div>
@@ -10,31 +11,28 @@
         </div>
     </div>
 
-    <RecentTicket />
-    <UpcomingTicket />
+    <recent-ticket />
+
+    <upcoming-ticket />
 
     <div class="m-2 p-2 fixed-bottom">
-        <Link href="/qr/order" as="button" class="btn btn-primary w-100">BUY NEW TICKET </Link>
+        <Link href="/ticket/order" class="btn btn-primary w-100">BUY NEW TICKET </Link>
     </div>
 
 </template>
 
 <script>
 
-    import Layout from "../../Shared/Layout";
+    import NavBar from "../../Shared/NavBar";
     import RecentTicket from "../../Shared/RecentTicket";
     import UpcomingTicket from "../../Shared/UpcomingTicket";
-    import { Link } from '@inertiajs/inertia-vue3'
+    import {Link} from '@inertiajs/inertia-vue3'
 
     export default {
         name: "Dashboard",
-        components: {
-            UpcomingTicket,
-            RecentTicket,
-            Layout,
-            Link
-        }
+        components: {UpcomingTicket, RecentTicket, NavBar, Link}
     }
+
 </script>
 
 <style scoped>
