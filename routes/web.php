@@ -8,7 +8,7 @@ use App\Http\Controllers\Ticket\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/auth', [IndexController::class, 'fetchAccessToken'])->name('auth');
+Route::post('/auth', [IndexController::class, 'fetchAccessToken'])->name('auth');
 
 // PRODUCTS
 Route::get('/products', [ProductController::class, 'index'])->name('products');
