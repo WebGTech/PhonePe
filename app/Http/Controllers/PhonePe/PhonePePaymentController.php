@@ -120,12 +120,12 @@ class PhonePePaymentController extends Controller
 
     private function createXVerify($payload)
     {
-        dd( hash(
+        return hash(
             'sha256',
             base64_encode($payload).
             "/v3/transaction/sdk-less/initiate".
             $this->salt_key
-        )."###".$this->salt_index);
+        )."###".$this->salt_index;
     }
 
 }
