@@ -61,7 +61,7 @@ class IndexController extends Controller
 
         Auth::login($_user);
 
-        return redirect()->route('products');
+        return redirect('/products');
     }
 
     public function createUser($user)
