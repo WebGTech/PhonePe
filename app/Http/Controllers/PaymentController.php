@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function index($oid)
     {
-        $order = DB::table('sale_order so')
+        $order = DB::table('sale_order as so')
             ->join('stations as source', 'source.stn_id', '=', 'so.src_stn_id')
             ->join('stations as destination', 'destination.stn_id', '=', 'so.src_stn_id')
             ->where('sale_or_no', '=', $oid)
