@@ -30,7 +30,7 @@ class OrderController extends Controller
         ]);
 
         $saleOrderNumber = $this -> genSaleOrderNumber($request->input('pass_id'));
-        
+
         DB::table('sale_order')->insert([
             'sale_or_no' => $saleOrderNumber,
             'txn_date' => now(),
@@ -57,7 +57,7 @@ class OrderController extends Controller
 
     private function genSaleOrderNumber($pass_id)
     {
-        return bin2hex("ATEK".Auth::user()->mobile.$pass_id.time());
+        return "ATEK".dechex(Auth::user()->mobile.$pass_id.time());
     }
 
 }
