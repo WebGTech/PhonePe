@@ -26,11 +26,6 @@ class PhonePePaymentController extends Controller
     public function pay($order)
     {
 
-        print_r($this->salt_key);
-        print_r($this->salt_index);
-        print_r($this->x_client_id);
-        print_r($this->app_url);
-
         $transactionContext = base64_encode($this->createCart($order));
         $payload = $this->createPayload($order, $transactionContext);
         $request = $this->createRequest($payload);
@@ -68,12 +63,12 @@ class PhonePePaymentController extends Controller
 
     private function createCart($order)
     {
-        $app_url = env('APP_URL');
+
         return'{
             "orderContext": {
                 "trackingInfo": {
                     "type": "HTTPS",
-                    "url": "'. $app_url ."/order/". $order -> sale_or_no .'"
+                    "url": "'. $this->app_url ."/order/". $order -> sale_or_no .'"
                 }
             },
             "fareDetails": {
@@ -105,14 +100,13 @@ class PhonePePaymentController extends Controller
 
     private function createPayload($order, $transactionContext)
     {
-        $app_url = env('APP_URL');
         return '{
             "merchantId": "'. $this->x_client_id .'",
             "amount": '. $order -> sale_amt .',
             "validFor": 900000,
-            "transactionId": "PAY'. $order -> sale_or_no .'",
+            "transactionId": "'. "PAY" . $order -> sale_or_no .'",
             "merchantOrderId": "'. $order -> sale_or_no .'",
-            "redirectUrl": "' . $app_url . "/orders/" . $order -> sale_or_no .'",
+            "redirectUrl": "' . $this->app_url . "/orders/" . $order -> sale_or_no .'",
             "transactionContext": "'. $transactionContext .'"
         }';
     }
