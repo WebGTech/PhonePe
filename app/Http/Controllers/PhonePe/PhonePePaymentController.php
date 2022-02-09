@@ -32,6 +32,13 @@ class PhonePePaymentController extends Controller
         $client_id = $this->x_client_id;
         $x_callback_url = 'https://' . $this->app_url . '/order/' . $order -> sale_or_no;
 
+        dd("
+            TRANSACTION CONTEXT: $transactionContext \n
+            PAYLOAD: $payload \n
+            REQUEST: $request \n
+            X-VERIFY: $x_verify
+        ");
+
         $curl = curl_init();
 
         curl_setopt_array($curl, [
