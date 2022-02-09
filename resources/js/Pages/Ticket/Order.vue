@@ -160,7 +160,7 @@
 
         methods: {
             getFare: async function () {
-                let response = await fetch('https://tender-bhaskara.162-241-222-27.plesk.page/api/fare/', {
+                let response = await fetch('https://tender-bhaskara.162-241-222-27.plesk.page/api/get/fare', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
