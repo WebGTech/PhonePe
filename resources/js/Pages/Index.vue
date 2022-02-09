@@ -26,19 +26,16 @@
                     const newRes = JSON.parse(JSON.stringify(res))
                     const {grantToken: token} = newRes
 
-                    this.authenticate(token)
+                    this.$inertia.post('auth', {token: token})
+                        .then(() => {
+
+                        })
 
                 }).catch((err) => {
                     alert(err);
                 })
             })
         },
-        authenticate: function (token) {
-            this.$inertia.post('auth', {token: token})
-            .then(() => {
-
-            })
-        }
     }
 
 </script>
