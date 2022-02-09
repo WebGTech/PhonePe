@@ -10,6 +10,7 @@ use Inertia\Inertia;
 
 class OrderController extends Controller
 {
+
     public function index()
     {
         return Inertia::render('Ticket/Order', [
@@ -19,7 +20,7 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        sleep(3);
+
         $request -> validate([
             'source_id' => ['required'],
             'destination_id' => ['required'],
@@ -47,6 +48,11 @@ class OrderController extends Controller
 
         return redirect()->to('/pay/'.$saleOrderNumber);
 
+    }
+
+    public function view()
+    {
+        return Inertia::render('Ticket/View');
     }
 
     private function genSaleOrderNumber($pass_id)

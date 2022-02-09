@@ -115,7 +115,12 @@
         </div>
 
         <div class="m-2 p-2 fixed-bottom">
-            <button type="submit" class="btn btn-primary w-100" :disabled="ticket.processing">PROCEED</button>
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+                :disabled="ticket.processing">
+                PROCEED TO PAY ₹ {{ ticket.quantity * ticket.fare }}
+            </button>
         </div>
 
     </form>
@@ -123,6 +128,7 @@
 </template>
 
 <script>
+
     import {Link} from '@inertiajs/inertia-vue3'
     import { useForm } from '@inertiajs/inertia-vue3'
     import NavBar from "../../Shared/NavBar";
@@ -137,7 +143,7 @@
 
         components: {
             NavBar,
-            Link
+            Link,
         },
 
         data() {

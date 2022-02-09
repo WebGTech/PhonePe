@@ -24,6 +24,9 @@ class PhonePeApiController extends Controller
         // CREATING BASE 64 OF TOKEN
         $token = base64_encode('{"grantToken": "'.$grantToken.'"}');
 
+        $hello = '$token';
+        $hello = "$token";
+
         // CREATING REQUEST
         $request = '{"request": "'.$token.'"}';
 
