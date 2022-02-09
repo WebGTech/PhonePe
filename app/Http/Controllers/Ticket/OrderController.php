@@ -57,7 +57,7 @@ class OrderController extends Controller
 
     private function genSaleOrderNumber($pass_id)
     {
-        return "ATEK".dechex(Auth::user()->mobile.$pass_id.time());
+        return "ATEK".dechex(Auth::user()->mobile + $pass_id + time());
     }
 
 }
