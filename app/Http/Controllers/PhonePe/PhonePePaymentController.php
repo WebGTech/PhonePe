@@ -26,7 +26,7 @@ class PhonePePaymentController extends Controller
     public function pay($order)
     {
 
-        $transactionContext = base64_encode(trim($this->createCart($order)));
+        $transactionContext = trim($this->createCart($order));
         $payload = $this->createPayload($order, $transactionContext);
         $request = $this->createRequest($payload);
         $x_verify = $this->createXVerify($payload);
@@ -34,7 +34,6 @@ class PhonePePaymentController extends Controller
         $x_callback_url = $this->app_url . '/order/' . $order -> sale_or_no;
 
         print_r($this->createCart($order));
-        print_r("\n"."TRANSACTION: ".$transactionContext);
 
         $curl = curl_init();
 
@@ -67,7 +66,7 @@ class PhonePePaymentController extends Controller
     private function createCart($order)
     {
 
-        return'{
+        return base64_encode('{
             "orderContext": {
                 "trackingInfo": {
                     "type": "HTTPS",
@@ -98,7 +97,7 @@ class PhonePePaymentController extends Controller
                     }
                 ]
             }
-        }';
+        }');
     }
 
     private function createPayload($order, $transactionContext)
