@@ -25,6 +25,12 @@ class PhonePePaymentController extends Controller
 
     public function pay($order)
     {
+
+        print_r($this->salt_key);
+        print_r($this->salt_index);
+        print_r($this->x_client_id);
+        print_r($this->app_url);
+
         $transactionContext = base64_encode($this->createCart($order));
         $payload = $this->createPayload($order, $transactionContext);
         $request = $this->createRequest($payload);
