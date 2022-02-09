@@ -30,7 +30,7 @@ class PhonePePaymentController extends Controller
         $request = $this->createRequest($payload);
         $x_verify = $this->createXVerify($payload);
         $client_id = $this->x_client_id;
-        $x_callback_url = 'https://' . $this->app_url . '/order/' . $order -> sale_or_no;
+        $x_callback_url = $this->app_url . '/order/' . $order -> sale_or_no;
 
        print_r("TRANSACTION CONTEXT: " . $transactionContext);
        print_r("PAYLOAD: " . $payload);
@@ -66,11 +66,12 @@ class PhonePePaymentController extends Controller
 
     private function createCart($order)
     {
+        $app_url = env('APP_URL');
         return'{
             "orderContext": {
                 "trackingInfo": {
                     "type": "HTTPS",
-                    "url": "https://'.env('APP_NAME').'/orders/'. $order -> sale_or_no .'"
+                    "url": "'. $app_url ."/order/". $order -> sale_or_no .'"
                 }
             },
             "fareDetails": {
@@ -102,13 +103,14 @@ class PhonePePaymentController extends Controller
 
     private function createPayload($order, $transactionContext)
     {
+        $app_url = env('APP_URL');
         return '{
             "merchantId": "'. $this->x_client_id .'",
             "amount": '. $order -> sale_amt .',
             "validFor": 900000,
             "transactionId": "PAY'. $order -> sale_or_no .'",
             "merchantOrderId": "'. $order -> sale_or_no .'",
-            "redirectUrl": "https://'.env('APP_NAME').'/orders/'. $order -> sale_or_no .'",
+            "redirectUrl": ' . $app_url . "/orders/" . $order -> sale_or_no .'",
             "transactionContext": "'. $transactionContext .'"
         }';
     }
