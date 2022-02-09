@@ -57,9 +57,9 @@ class IndexController extends Controller
 
     public function loginUser($user)
     {
-        $_user = User::where('mobile', '=', $user->phoneNumber)->find();
+        $_user = User::where('mobile', '=', $user->phoneNumber)->first();
 
-        Auth::attempt($_user);
+        Auth::login($_user);
 
         dd(Auth::user());
 
