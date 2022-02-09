@@ -61,7 +61,7 @@ class IndexController extends Controller
 
         Auth::login($_user);
 
-        dd(Auth::user());
+        dd(Auth::user()->mobile);
 
         return redirect('/products');
     }
