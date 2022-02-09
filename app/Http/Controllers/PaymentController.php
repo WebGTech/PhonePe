@@ -12,7 +12,7 @@ class PaymentController extends Controller
     {
         $order = DB::table('sale_order')
             ->where('sale_or_no', '=', $oid)
-            ->get();
+            ->first();
 
         $api = new PhonePePaymentController();
         $response = $api -> pay($order);
