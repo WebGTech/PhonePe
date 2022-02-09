@@ -21,8 +21,6 @@ class OrderController extends Controller
     public function create(Request $request)
     {
 
-        dd(Auth::user());
-
         $request -> validate([
             'source_id' => ['required'],
             'destination_id' => ['required'],
