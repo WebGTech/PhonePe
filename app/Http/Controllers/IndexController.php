@@ -60,9 +60,7 @@ class IndexController extends Controller
         $_user = User::where('mobile', '=', $user->phoneNumber)->first();
 
         Auth::login($_user);
-
-        dd(Auth::user()->mobile);
-
+        
         return redirect('/products');
     }
 
