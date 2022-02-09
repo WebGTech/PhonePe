@@ -110,7 +110,7 @@ class PhonePePaymentController extends Controller
             "validFor": 900000,
             "transactionId": "PAY'. $order -> sale_or_no .'",
             "merchantOrderId": "'. $order -> sale_or_no .'",
-            "redirectUrl": ' . $app_url . "/orders/" . $order -> sale_or_no .'",
+            "redirectUrl": "' . $app_url . "/orders/" . $order -> sale_or_no .'",
             "transactionContext": "'. $transactionContext .'"
         }';
     }
