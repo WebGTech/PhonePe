@@ -87,10 +87,10 @@ class PhonePePaymentController extends Controller
                         "itemId":"' . $order -> sale_or_no . '",
                         "price":' . $order -> sale_amt . ',
                         "from": {
-                            "stationName": "' . $order -> src_stn_id . '"
+                            "stationName": "' . $order -> source_name . '"
                         },
                         "to": {
-                            "stationName": "' . $order -> des_stn_id . '"
+                            "stationName": "' . $order -> destination_name . '"
                         },
                         "dateOfTravel": {
                             "timestamp": ' . Carbon::now() . ',
