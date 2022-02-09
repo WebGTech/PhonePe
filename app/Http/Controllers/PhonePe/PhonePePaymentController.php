@@ -105,7 +105,7 @@ class PhonePePaymentController extends Controller
 
     private function createPayload($order, $transactionContext)
     {
-        dd( '{
+        print_r( '{
             "merchantId": "'. $this->x_client_id .'",
             "amount": '. $order -> sale_amt .',
             "validFor": 900000,
