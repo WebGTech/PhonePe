@@ -30,9 +30,7 @@ class OrderController extends Controller
         ]);
 
         $saleOrderNumber = $this -> genSaleOrderNumber($request->input('pass_id'));
-
-        dd($saleOrderNumber);
-
+        
         DB::table('sale_order')->insert([
             'sale_or_no' => $saleOrderNumber,
             'txn_date' => now(),
