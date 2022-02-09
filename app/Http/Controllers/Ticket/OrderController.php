@@ -31,7 +31,7 @@ class OrderController extends Controller
 
         $saleOrderNumber = $this -> genSaleOrderNumber($request->input('pass_id'));
 
-        DB::table('orders')->insert([
+        DB::table('sale_order')->insert([
             'sale_or_no' => $saleOrderNumber,
             'txn_date' => now(),
             'user_id' => Auth::id(),
@@ -42,8 +42,8 @@ class OrderController extends Controller
             'media_type_id' => 2,
             'product_id' => $request->input('pass_id') === "11" ? 1 : 2,
             'pass_id' => $request->input('pass_id'),
-            'app_id' => 1,
-            'sale_or_status' => 1,
+            'app_id' => env('APP_ID'),
+            'sale_or_status' => env('ISSUE'),
         ]);
 
         return redirect()->to('/pay/'.$saleOrderNumber);
