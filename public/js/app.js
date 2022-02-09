@@ -21,13 +21,20 @@ __webpack_require__.r(__webpack_exports__);
         var newRes = JSON.parse(JSON.stringify(res));
         var token = newRes.grantToken;
 
-        _this.$inertia.post('auth', {
-          token: token
-        }).then(function () {});
+        _this.authenticate(token);
+
+        console.info('Token generated successfully ..');
       })["catch"](function (err) {
         alert(err);
       });
     });
+  },
+  methods: {
+    authenticate: function authenticate(token) {
+      this.$inertia.post('/auth', {
+        token: token
+      }).then(function () {});
+    }
   }
 });
 
