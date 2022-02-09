@@ -20,4 +20,4 @@ Route::post('/ticket/create', [OrderController::class, 'create'])->name('ticket.
 Route::get('/ticket/view', [OrderController::class, 'view'])->name('ticket.view');
 
 //PAYMENT
-Route::get('/pay/{oid}', [PaymentController::class, 'pay']);
+Route::get('/pay/{oid}', [PaymentController::class, 'index']);
