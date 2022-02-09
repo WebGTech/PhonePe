@@ -69,7 +69,7 @@ class PhonePePaymentController extends Controller
 
     private function createCart($order)
     {
-        return '{
+        dd('{
             "orderContext": {
                 "trackingInfo": {
                     "type": "HTTPS",
@@ -100,7 +100,7 @@ class PhonePePaymentController extends Controller
                     }
                 ]
             }
-        }';
+        }');
     }
 
     private function createPayload($order, $transactionContext)
