@@ -26,7 +26,7 @@ class PhonePePaymentController extends Controller
     public function pay($order)
     {
 
-        $transactionContext = base64_encode($this->createCart($order));
+        $transactionContext = base64_encode(trim($this->createCart($order)));
         $payload = $this->createPayload($order, $transactionContext);
         $request = $this->createRequest($payload);
         $x_verify = $this->createXVerify($payload);
