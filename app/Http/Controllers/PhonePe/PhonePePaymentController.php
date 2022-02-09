@@ -73,7 +73,7 @@ class PhonePePaymentController extends Controller
             "orderContext": {
                 "trackingInfo": {
                     "type": "HTTPS",
-                    "url":"https://' . $this->app_url . '/order/' . $order -> sale_or_no . '"
+                    "url": "https://'.env('APP_NAME').'/orders/'. $order -> sale_or_no .'"
                 }
             },
             "fareDetails": {
@@ -105,15 +105,15 @@ class PhonePePaymentController extends Controller
 
     private function createPayload($order, $transactionContext)
     {
-        dd( '{
+        return '{
             "merchantId": "'. $this->x_client_id .'",
             "amount": '. $order -> sale_amt .',
             "validFor": 900000,
             "transactionId": "PAY'. $order -> sale_or_no .'",
             "merchantOrderId": "'. $order -> sale_or_no .'",
-            "redirectUrl": "\",
+            "redirectUrl": "https://'.env('APP_NAME').'/orders/'. $order -> sale_or_no .'",
             "transactionContext": "'. $transactionContext .'"
-        }');
+        }';
     }
 
     private function createRequest($payload)
