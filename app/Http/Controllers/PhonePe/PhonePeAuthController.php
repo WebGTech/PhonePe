@@ -4,7 +4,7 @@ namespace App\Http\Controllers\PhonePe;
 
 use App\Http\Controllers\Controller;
 
-class PhonePeApiController extends Controller
+class PhonePeAuthController extends Controller
 {
 
     public $salt_key;
@@ -23,9 +23,6 @@ class PhonePeApiController extends Controller
 
         // CREATING BASE 64 OF TOKEN
         $token = base64_encode('{"grantToken": "'.$grantToken.'"}');
-
-        $hello = '$token';
-        $hello = "$token";
 
         // CREATING REQUEST
         $request = '{"request": "'.$token.'"}';

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\PhonePe\PhonePeApiController;
+use App\Http\Controllers\PhonePe\PhonePeAuthController;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -18,12 +18,12 @@ class IndexController extends Controller
 
     public function fetchAccessToken(Request $request)
     {
-        $api = new PhonePeApiController();
+        $api = new PhonePeAuthController();
 
-        $accessTokenResponse = $api -> fetchAccessToken($request->input('token'));
+        $accessTokenResponse = $api->fetchAccessToken($request->input('token'));
         $accessTokenRes = json_decode($accessTokenResponse);
 
-        if ($accessTokenRes -> success) {
+        if ($accessTokenRes->success) {
 
             $userDetails = $api->getUserDetails($accessTokenRes->data->accessToken);
             $userDetailsRes = json_decode($userDetails);
@@ -57,7 +57,7 @@ class IndexController extends Controller
 
     public function loginUser($user)
     {
-        $_user = User::where('mobile', '=', $user -> phoneNumber)->first();
+        $_user = User::where('mobile', '=', $user->phoneNumber)->first();
 
         Auth::login($_user);
 
@@ -68,11 +68,11 @@ class IndexController extends Controller
     {
 
         User::create([
-            'name' => $user -> name,
-            'email' => $user -> primaryEmail,
-            'mobile' => $user -> phoneNumber,
+            'name' => $user->name,
+            'email' => $user->primaryEmail,
+            'mobile' => $user->phoneNumber,
             'lang' => 'en',
-            'is_verified' => $user -> isEmailVerified,
+            'is_verified' => $user->isEmailVerified,
         ]);
 
         $this->loginUser($user);
