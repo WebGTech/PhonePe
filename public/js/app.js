@@ -152,7 +152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch('/api/fare/', {
+                return fetch('https://tender-bhaskara.162-241-222-27.plesk.page/api/fare/', {
                   method: 'POST',
                   headers: {
                     "Content-Type": "application/json",
