@@ -34,6 +34,7 @@ class PhonePePaymentController extends Controller
         $x_callback_url = $this->app_url . '/order/' . $order -> sale_or_no;
 
         print_r($this->createCart($order));
+        print_r("\n"."TRANSACTION: ".$transactionContext);
 
         $curl = curl_init();
 
