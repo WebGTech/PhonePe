@@ -38,9 +38,6 @@
         methods: {
             authenticate: function (token) {
                 this.$inertia.post('/auth', {token: token})
-                    .then(() => {
-
-                    })
             }
         }
     }

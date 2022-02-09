@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
     authenticate: function authenticate(token) {
       this.$inertia.post('/auth', {
         token: token
-      }).then(function () {});
+      });
     }
   }
 });
